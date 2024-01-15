@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.RestaurantMapper">
+	<insert id="insertRestaurant">
+		INSERT INTO restaurant(rno,location,name,lng,lat,tel)
+		VALUES(#{rno},#{location},#{name},#{lng},#{lat},#{tel})
+	</insert>
+	
+	<select id="resList">
+		select * from restaurant
+	</select>
+	<insert id="createImage">
+		INSERT INTO restaurantImage(rno,uploadPath)
+		VALUES(#{rno},#{uploadPath})
+	</insert>
+	<select id="getNextRno" resultType="int">
+    	SELECT rno_seq.NEXTVAL FROM DUAL
+	</select>
+	<select id="imageList">
+		select * from restaurantimage
+	</select>
+	<select id="resInfo">
+		select * from restaurant where rno=#{rno}
+	</select>
+	<select id="resInfoImage">
+		select * from restaurantimage where rno=#{rno}
+	</select>
+	<insert id="addComment">
+		INSERT INTO restaurantcomment(cno,rno,content,score)
+		VALUES(cno_seq.nextval,#{rno},#{content},#{score})
+	</insert>
+	<select id="resInfoComment">
+		select * from restaurantcomment where rno=#{rno}
+	</select>
+	<select id="commentList">
+		select * from restaurantcomment
+	</select>
+</mapper> 
